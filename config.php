@@ -1,6 +1,6 @@
 <?php          
 $config['cache_timeout'] = 10;
-$config['socket_timeout'] = 3;  
+$config['socket_timeout'] = 5;  
 
 //REALM 1: LOGIN
 $config['realms'][1]['name'] = 'Login';
