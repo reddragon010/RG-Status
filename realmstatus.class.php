@@ -19,10 +19,11 @@ class realm {
 		try {
 			$fp = @fsockopen($this->ip, $this->port, $errno, $errstr, $timeout);
 			if(!$fp) {
-					$this->online = 0;
+				$this->online = 0;
 			}
 			else {
-					$this->online = 1;
+				$this->online = 1; 
+				fclose($fp);
 			}
 		} catch(Exception $e) {
 			$this->online = 0;
