@@ -41,6 +41,7 @@ echo("');");
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="refresh" content="<?php echo($config['cache_timeout']); ?>;<?php echo($_SERVER['PHP_SELF']); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo(currurl('rgs.php')); ?>rgs.css">  
 </head>
 <body>
