@@ -1,0 +1,42 @@
+#rgs {
+	border: 1px solid #999;
+	width: 100px;
+	color: #FFF;
+	padding: 5px;
+}
+
+#rgs table {
+	width:100%;
+	border-spacing:1px;
+}
+
+.rgs_icon {
+	margin-right:20px;
+}
+
+.rgs_icon .up{
+	height: 20px;
+	width: 21px;
+	background-image: url(./images/up.png);
+}
+
+.rgs_icon .down{
+	height: 20px;
+	width: 21px;
+	background-image: url(./images/down.png);
+}
+
+.rgs_text {
+	text-align: right;
+  font-family: verdana, arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.rgs_text .up{
+  color: green;
+}
+
+.rgs_text .down{
+  color: red;
+}
