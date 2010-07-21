@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="author" content="Michael Riedmann">
+		<title>
+			RG Status - Website Widget
+		</title>
+		<link rel="stylesheet" href="./rgs.css" type="text/css" charset="utf-8">
+		<style type="text/css" media="screen">
+				body {
+					text-align: justify;
+					font-family: Arial, "MS Trebuchet", sans-serif;
+					font-size: 11pt;
+				}
+				#container {
+					width: 600px;
+					margin: auto;
+					padding: 10px;
+				}
+				#header {
+					border: 1px solid #999;
+					padding: 5px;
+					margin-bottom: 10px;
+				}
+				#center {
+					border: 1px solid #999;
+					padding: 5px;
+					margin-bottom: 10px;
+				}
+				#footer {
+					border: 1px solid #999;
+					padding: 5px;
+					text-align:center;
+				}
+				pre {
+					overflow: scroll;
+				}
+				.clear {
+					clear:both;
+				}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<h1>
+					RG RealmStatus Tool
+				</h1>
+			</div>
+			<div id="center">
+				<h2>
+					Was ist das für'n Teil??
+				</h2>
+				<p>
+					Eigentlich ganz simple: Mit einem keinen Codeschnipsel kannst du den Status der RG-Server ganz leicht in deine Website einbauen. Binde einfach den unten angeführten JavaScript-Code irgendwo auf deiner Seite ein und schon kannst du deinen Besucher den Serverstatus anzeigen ohne die RG-Website zum glühen zu bringen.
+				</p>
+				<h2>
+					Wie funktionierts?
+				</h2>
+				<p>
+					Dieser Server versucht alle 10 Sekunden auf die RG-Server zu connecten. Läuft alles glatt ist der Server online, gehts schief ist er mal wieder abgeschmiert. Natürlich kann ich die Richtigkeit dieser Methode nicht garantieren, eine bessere ist aber bis jetzt noch niemandem eingefallen. Anhand der Daten legt das Serverscript eine kleine HTML-Datei an, die dann über das Javascript direkt in deine Seite geladen wird. Keinerlei Daten werden von deiner Webseite zu diesem Server übertragen (bis auf die Abfrage der Datei), geschweige denn gespeichert.
+				</p>
+				<h2>
+					Beispiel
+				</h2>
+				<div style="float:left;margin-right:20px">
+					<script src="./rgs.php?t=js" type="text/javascript"></script>
+				</div>
+				<div style="float:left;margin-right:20px">
+					<iframe id="rgs_iframe" src="./rgs.php" frameborder="0" align="center" scrolling="no" marginheight="0" marginwidth="0" height="100" width="120">Your Browser don't support IFrames. Please download a newer one!</iframe>
+				</div>
+				<div class="clear"></div>
+				<h2>
+					Gib her das Schnipsel!
+				</h2>
+				
+				<h2>
+					Anmerkung
+				</h2>
+				<p>
+					Die Software birgt aufgrund ihrer Simplizität eine geringe Fehleranfälligkeit. Trotzdem muss hier klargestellt werden, dass ich nicht für eventuell entstehende Schäden (in welcher Art auch immer) hafte. Weiters hat der Benutzer keinen Anspruch auf Support in irgendeiner Art und Weise. Bei Fragen oder Vorschlägen stehe kann mir gerne eine PN geschrieben werden (RG-Seite; Nick: reddragon010).
+				</p>
+			</div>
+			<div id="footer">
+				copyright by Michael Riedmann aka RedDragon<br>
+				thx to Nightmare, Vision, Amras and the entire RG-Team
+			</div>
+		</div>
+	</body>
+</html>
