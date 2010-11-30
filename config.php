@@ -1,6 +1,7 @@
 <?php          
 $config['cache_timeout'] = 20;
-$config['socket_timeout'] = 8;  
+$config['socket_timeout'] = 8;
+$config['cache'] = false;  
 
 //REALM 1: LOGIN
 $config['realms'][1]['name'] = 'Login';
@@ -17,4 +18,8 @@ $config['realms'][3]['name'] = 'PvE';
 $config['realms'][3]['ip']	 = '94.23.6.9';
 $config['realms'][3]['port'] = 8090;
 
+//REALM 4: CLASSIC
+$config['realms'][4]['name'] = 'Classic';
+$config['realms'][4]['ip']	 = '94.23.195.96';
+$config['realms'][4]['port'] = 8086;
 ?>
