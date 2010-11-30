@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<!DOCTYPE html>
+<html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="author" content="Michael Riedmann">
@@ -13,6 +12,9 @@
 					text-align: justify;
 					font-family: Arial, "MS Trebuchet", sans-serif;
 					font-size: 11pt;
+				}
+				blockquote {
+					font-size: 8pt;
 				}
 				#container {
 					width: 600px;
@@ -96,49 +98,54 @@
 				<h2>Wie funktionierts?</h2>
 			</div>
 			<div class="center">
-				<p>Dieser Server versucht alle 20 Sekunden auf die RG-Server zu connecten. Läuft alles glatt ist der Server online, gehts schief ist er mal wieder abgeschmiert. Natürlich kann ich die Richtigkeit dieser Methode nicht garantieren, eine bessere ist aber bis jetzt noch niemandem eingefallen. Anhand der Daten legt das Serverscript eine kleine HTML- oder JS-Datei an, die dann mittels Javascript/iFrame direkt in deine Seite geladen wird. Keinerlei Daten werden von deiner Webseite zu diesem Server übertragen (bis auf die Abfrage der Datei), geschweige denn gespeichert.</p>
+				<p>Dieser Server versucht alle 20 Sekunden auf die RG-Server zu connecten. Läuft alles glatt ist der Server online, gehts schief ist er mal wieder abgeschmiert. Natürlich kann ich die Richtigkeit dieser Methode nicht garantieren, eine bessere ist aber bis jetzt noch niemandem eingefallen. Anhand der Daten legt das Serverscript eine kleine JS-Datei an, die dann mittels Javascript direkt in deine Seite geladen wird. Keinerlei Daten werden von deiner Webseite zu diesem Server übertragen (bis auf die Abfrage der Datei), geschweige denn gespeichert.</p>
 			</div> 
-			<div class="leftc">
-				<h2>JavaScript</h2>
-			</div>
-			<div class="rightc">
-				<h2>iFrame</h2>
-			</div>
 			<div class="center_headline clear">
 				 <h2>Beispiel</h2>
 			</div>
-			<div class="leftc" style="height:100px;"> 
-				<script src="./rgs.php?t=js" type="text/javascript"></script>
+			<div class="center"> 
+				<script type="text/javascript">
+					function rgs(obj){
+						var out = '';
+						out += '<table>';
+						for (var i = 0; i < obj.length; i++) {
+							var realm = obj[i];
+							out += '<tr>';
+							if(realm.online){
+								out += '<td><img src="http://rgstatus.dreamblaze.net/images/up.png" /></td>';
+								out += '<td style="color:green">' + realm.name + '</td>';
+							} else {
+								out += '<td><img src="http://rgstatus.dreamblaze.net/images/down.png" /></td>';
+								out += '<td style="color:red">' + realm.name + '</td>';
+							}
+							if(realm.downtime){
+								var time = new Date(realm.downtime * 1000);
+								out += '<td style="font-size:10px">since ' + time.getHours() + ":" + time.getMinutes() + '</td>'
+							} else {
+								out += '<td></td>'
+							}
+							out += '</tr>';
+						}
+						out += '</table>';
+						document.write(out); 
+					}
+				</script>
+				<script src="./rgs.php" type="text/javascript"></script>
 			</div> 
-			<div class="rightc" style="height:100px;">
-				<iframe id="rgs_iframe" src="./rgs.php" frameborder="0" align="center" scrolling="no" marginheight="0" marginwidth="0" height="100" width="120">Your Browser don't support IFrames. Please download a newer one!</iframe>
-			</div>
 			<div class="center_headline clear">
 				 <h2>Beschreibung</h2>
 			</div>
-			<div class="leftc"> 
-         <p>Das Einbinden mittels JavaScript ist die leichte, flexible Methode um RGS auf deiner Seite einzubinden. Es werden keine server-seitigen Technologien wie PHP oder Perl verwendet. Die Hauptarbeit übernimmt der Browser das Besuchers. Dieser muss daher aber auch JavaScript unterstützen und ausführen können. Weiters kannst du das RGS-Widget mittels CSS komplett umgestalten, was aber auch bedeutet, dass du entweder ein eigenes Design erstellen muss oder das Standard Stylesheet im Kopf deiner Seite einbinden musst.</p>
-				<p>Diese Methode ist ideal wenn du deinen Besuchern ein optimal an deine Website angepasste StatusAnzeige zur Verfügung stellen willst. Weiters ist sie sehr ressourcensparend und leicht zu integrieren.</p>  
+			<div class="center"> 
+         <p>Das Einbinden mittels JavaScript ist eine leicht, flexible Methode um RGS auf deiner Seite einzubinden. Es werden keine server-seitigen Technologien wie PHP oder Perl verwendet. Die Hauptarbeit übernimmt der Browser des Besuchers. Dieser muss daher aber auch JavaScript unterstützen und ausführen können.</p>  
 			</div> 
-			<div class="rightc">
-				 <p>iFrames sind Technologie von gestern. Dennoch erfüllen sie in diesem Fall absolut ihren Zweck. Solltest du dich dazu entschließen RGS über diese Methode einzubinden verliehst du zwar viele Möglichkeiten das Design zu verändern, gewinnst aber das AutoRefresh-Feature. Damit wird deine Statusanzeige aktuell gehalten ohne das deine Besucher die Seite neu laden müssen. Weiters brauchst du nur ein kleines iFrame in deine Website einzubinden, statt dich auch noch um das Design kümmern zu müssen.</p>
-				<p>Diese Methode ist ideal wenn du eine selbstaktualisierende Statusanzeige brauchst oder dich nicht mit dem Design herumschlagen möchtest. Die iFrames sind zwar etwas "unsauberer" und leistungsintensiver, dafür aber auch ohne JavaScript-fähigem Browser benutzbar.</p> 
-			</div>
 			<div class="center_headline clear">
 				<h2>Einbinden</h2>
 			</div>
-			<div class="leftc">
-				<p>Kopiere diesen Teil an die Stelle an der das Widget erscheinen soll...
-				<pre style='color:#000000;background:#ffffff;'><span style='color:#808030; '>&lt;</span>script src<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>http://rgstatus.dreamblaze.net/rgs.php?t=js</span><span style='color:#800000; '>"</span> type<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>text/javascript</span><span style='color:#800000; '>"</span><span style='color:#808030; '>></span><span style='color:#808030; '>&lt;</span><span style='color:#808030; '>/</span>script<span style='color:#808030; '>></span></pre></p>
-				<p>... und diese zwischen die "head"-tags deiner Seite wenn du kein eigenes Stylesheet erstellen willst
-					<pre style='color:#000000;background:#ffffff;'><span style='color:#808030; '>&lt;</span>link rel<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>stylesheet</span><span style='color:#800000; '>"</span> href<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>http://rgstatus.dreamblaze.net/rgs.css</span><span style='color:#800000; '>"</span> type<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>text/css</span><span style='color:#800000; '>"</span> charset<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>utf-8</span><span style='color:#800000; '>"</span><span style='color:#808030; '>></span></pre>
-				</p> 
+			<div class="center">
+				<p>Kopiere diesen Teil an die Stelle an der das Widget erscheinen soll...</p>
+				<blockquote>Tipp: Klicke unten auf "Raw" und kopiere dann den Code. So beugst du Formatierungsproblemen vor ;)</blockquote>
+				<script src="https://gist.github.com/721707.js"></script> 
 			</div> 
-			<div class="rightc">
-				 <p>Einfach dieses Schnipsel an die gewünschte Stelle kopieren.
-					<pre style='color:#000000;background:#ffffff;'><span style='color:#808030; '>&lt;</span>iframe id<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>rgs_iframe</span><span style='color:#800000; '>"</span> src<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>http://rgstatus.dreamblaze.net/rgs.php</span><span style='color:#800000; '>"</span> frameborder<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>0</span><span style='color:#800000; '>"</span> align<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>center</span><span style='color:#800000; '>"</span> scrolling<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>no</span><span style='color:#800000; '>"</span> marginheight<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>0</span><span style='color:#800000; '>"</span> marginwidth<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>0</span><span style='color:#800000; '>"</span> height<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>100</span><span style='color:#800000; '>"</span> width<span style='color:#808030; '>=</span><span style='color:#800000; '>"</span><span style='color:#0000e6; '>120</span><span style='color:#800000; '>"</span><span style='color:#808030; '>></span>Your browser does not support iframes<span style='color:#808030; '>.</span><span style='color:#808030; '>&lt;</span><span style='color:#808030; '>/</span>iframe<span style='color:#808030; '>></span></pre>
-					</p>
-			</div>
 			<div class="center_headline clear">
 				<h2>Die ultimative Freiheit</h2>
 			</div>
